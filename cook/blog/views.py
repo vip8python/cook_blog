@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-
 from .models import Post
 
+class HomeListView(ListView):
+    model = Post
+    template_name = 'blog/home.html'
+    paginate_by = 6
 
 class PostListView(ListView):
     model = Post
@@ -16,5 +19,4 @@ class PostDetailView(DetailView):
     context_object_name = 'post'
     slug_url_kwarg = 'post_slug'
 
-def home(request):
-    return render(request, 'base.html')
+
